@@ -38,10 +38,32 @@ constructor() {
 
   onSubmit(e){
     e.preventDefault();
-    if(e.target[0].value.length >= 2)
+    if(e.target[0].value.length > 0)
     {
       Actions.searchProduct(e.target[0].value);
+    }else{
+      Actions.getProducts();
     }
+  }
+
+  printDiscount(discount)
+  {
+    var result = '';
+    if(discount > 0)
+    {
+      result = <span className="badge badge-pill badge-danger">{discount}%</span>;
+    } 
+    return result;
+  }
+
+  printPrice(discount, price)
+  {
+    var result = '';
+    if(discount > 0)
+    {
+      result = <div className="card-text"><strike>${price}</strike></div>;
+    } 
+    return result;
   }
 
   render(){
@@ -87,8 +109,8 @@ constructor() {
                           <img className="card-img-top" src={"http://"+item.image} alt="" />
                           <div className="card-body">
                             <h4 className="card-title"><b>{item.brand}</b>&nbsp;{item.description}</h4>
-                            <div className="card-text"><h4><b>${item.finalPrice}</b>&nbsp;<span class="badge badge-pill badge-danger">{item.discount}%</span></h4></div>
-                            <div className="card-text"><strike>${item.price}</strike></div>
+                            <div className="card-text"><h4><b>${item.finalPrice}</b>&nbsp;{ this.printDiscount(item.discount) }</h4></div>
+                            { this.printPrice(item.discount,item.price) }
                             <a href="#" className="btn btn-primary">Agregar</a>
                           </div>
                         </div>                        

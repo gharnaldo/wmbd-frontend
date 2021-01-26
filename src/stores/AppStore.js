@@ -14,7 +14,7 @@ class AppStore extends Reflux.Store {
 
   getProducts(){
     const self = this;
-    HTTP.get('http://45.181.79.108:8088/wmbd/products')
+    HTTP.get('http://localhost:8088/wmbd/products')
     .then((response) => {
       console.log('response');
       console.log(response);
@@ -28,7 +28,7 @@ class AppStore extends Reflux.Store {
 
   searchProduct(keyword){
     const self = this;
-    HTTP.get('http://45.181.79.108:8088/wmbd/products/search?keyword='+keyword)
+    HTTP.get('http://localhost:8088/wmbd/products/search?keyword='+keyword)
     .then((response) => {
       console.log(response);
       console.log('response.status');
